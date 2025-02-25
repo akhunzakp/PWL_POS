@@ -13,7 +13,7 @@ class KategoriSeeder extends Seeder
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function run(): void
     {
         $data = [
             ['kategori_id' => 1, 'kategori_kode' =>'DRK', 'kategori_nama' => 'Drink'],
