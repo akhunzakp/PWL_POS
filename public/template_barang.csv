@@ -1,0 +1,6 @@
+barang_id;kategori_id;barang_kode;barang_nama;harga_beli;harga_jual;created_at;updated_at
+1;1;ELE001;Laptop;5000000;5500000;NULL;NULL
+2;1;ELE002;Smartphone;3000000;3500000;NULL;NULL
+3;2;PAK001;Baju;100000;150000;NULL;NULL
+4;2;PAK002;Celana;120000;170000;NULL;NULL
+5;3;MAK001;Roti;5000;10000;NULL;NULL

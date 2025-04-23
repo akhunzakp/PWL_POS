@@ -1,18 +1,18 @@
-@empty($user)
+@empty ($user)
 <div id="modal-master" class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Kesalahan</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <div class="alert alert-danger">
-                <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
-                Data yang anda cari tidak ditemukan
+                <h5><i class="fa fa-ban"></i> Error!!</h5>
+                The data you are looking for is not found
             </div>
-            <a href="{{ url('/user') }}" class="btn btn-warning">Kembali</a>
+            <a href="{{ url('/user') }}" class="btn btn-warning">Return</a>
         </div>
     </div>
 </div>
@@ -23,18 +23,18 @@
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Data User</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Level Pengguna</label>
+                    <label>User Level</label>
                     <select name="level_id" id="level_id" class="form-control" required>
-                        <option value="">- Pilih Level -</option>
+                        <option value="">- Select Level -</option>
                         @foreach($level as $l)
-                            <option {{ $l->level_id == $user->level_id ? 'selected' : '' }} value="{{ $l->level_id }}">
+                            <option value="{{ $l->level_id }}" {{ $l->level_id == $user->level_id ? 'selected' : '' }}>
                                 {{ $l->level_nama }}
                             </option>
                         @endforeach
@@ -48,23 +48,24 @@
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input value="{{ $user->name }}" type="text" name="nama" id="nama" class="form-control" required>
-                    <small id="error-nama" class="error-text form-text text-danger"></small>
+                    <input value="{{ $user->name }}" type="text" name="name" id="name" class="form-control" required>
+                    <small id="error-name" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
                     <input type="password" name="password" id="password" class="form-control">
-                    <small class="form-text text-muted">Abaikan jika tidak ingin ubah password</small>
+                    <small class="form-text text-muted">Ignore if you don't want to change the password</small>
                     <small id="error-password" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" data-dismiss="modal" class="btn btn-warning">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </form>
+
 <script>
 $(document).ready(function() {
     $("#form-edit").validate({
@@ -84,7 +85,7 @@ $(document).ready(function() {
                         $('#myModal').modal('hide');
                         Swal.fire({
                             icon: 'success',
-                            title: 'Berhasil',
+                            title: 'Succeed',
                             text: response.message
                         });
                         dataUser.ajax.reload();
@@ -95,7 +96,7 @@ $(document).ready(function() {
                         });
                         Swal.fire({
                             icon: 'error',
-                            title: 'Terjadi Kesalahan',
+                            title: 'Something Went Wrong',
                             text: response.message
                         });
                     }
@@ -104,14 +105,14 @@ $(document).ready(function() {
             return false;
         },
         errorElement: 'span',
-        errorPlacement: function(error, element) {
+        errorPlacement: function (error, element) {
             error.addClass('invalid-feedback');
             element.closest('.form-group').append(error);
         },
-        highlight: function(element) {
+        highlight: function (element) {
             $(element).addClass('is-invalid');
         },
-        unhighlight: function(element) {
+        unhighlight: function (element) {
             $(element).removeClass('is-invalid');
         }
     });
